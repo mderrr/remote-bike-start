@@ -1,0 +1,36 @@
+<resources>
+    <!-- Device Variables -->
+    <string name="device_mac_address" translatable="false">88:25:83:F1:F9:71</string>
+    <string name="device_password" translatable="false">882583</string>
+
+    <string name="app_name" translatable="false">Remote Bike Start</string>
+
+    <!-- Copyright Footer -->
+    <string name="copyright_footer_beginning" translatable="false">Copyleft</string>
+    <string name="copyright_footer_end" translatable="false">SHERZA</string>
+
+    <!-- ImageView Descriptions -->
+    <string name="splash_screen_image_view_description">Splash screen image</string>
+    <string name="banner_image_view_description">Banner image</string>
+    <string name="copyleft_image_view_description">Copyleft image</string>
+
+    <!-- Tooltip Messages -->
+    <string name="toggle_button_tooltip_message">Toggle the Service</string>
+
+    <!-- Help Messages -->
+    <string name="back_to_exit_message">Press Back Again To Exit</string>
+
+    <!-- Dialog Titles -->
+    <string name="permission_rationale_dialog_title">Permission Required</string>
+    <string name="error_dialog_title">Error</string>
+
+    <!-- Permission Rationale Messages -->
+    <string name="fine_location_rationale_message">Users must grant location permissions to establish a connection with a Bluetooth LE device, due to scanning having the potential of locating the user</string>
+    <string name="background_location_rationale_message">It is highly recommended that the user grant background location permission, in order to avoid errors with the application\'s background functionality.</string>
+    <string name="bluetooth_rationale_message">You must enable bluetooth to access the app\'s functionality.</string>
+
+    <!-- Button text -->
+    <string name="ok">Ok</string>}
+    <string name="cancel">Cancel</string>
+    <string name="exit">Exit</string>
+</resources>
