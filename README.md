@@ -1,2 +1,2 @@
 # remote-bike-start
-Bluetooth low energy bike unlocking app.
+Remote Bike Start (RBS) is a Bluetooth Low Energy motorcycle unlocking app, written in Kotlin using android studio.
