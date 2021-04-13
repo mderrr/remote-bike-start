@@ -1,7 +1,5 @@
 package com.example.remotebikestart
 
-
-import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
 import android.content.DialogInterface
@@ -15,8 +13,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.remotebikestart.databinding.ActivityMainBinding
-import java.lang.Integer.getInteger
-
 
 const val FINE_LOCATION_PERMISSION = android.Manifest.permission.ACCESS_FINE_LOCATION
 const val BACKGROUND_LOCATION_PERMISSION = android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
@@ -28,9 +24,7 @@ const val ENABLE_BLUETOOTH_REQUEST_CODE = 102
 class MainActivity : AppCompatActivity() {
     private var backPressedTime = 0L
     private lateinit var binding: ActivityMainBinding
-
-
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         val currentYear = " ${Calendar.getInstance().get(Calendar.YEAR)} "
         val copyrightFooter = getString(R.string.copyright_footer_beginning) + currentYear + getString(R.string.copyright_footer_end)
+        val isScanServiceRunning = ScanService.isServiceRunning
 
         val bluetoothManager = getSystemService(BluetoothManager::class.java)
         val bluetoothAdapter: BluetoothAdapter? = bluetoothManager?.adapter
@@ -46,13 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding.toggleButton.tooltipText = getString(R.string.toggle_button_tooltip_message)
         binding.footerTextView.text = copyrightFooter
 
-        checkLocationPermissions()
-
-        binding.toggleButton.setOnClickListener {
-            if (checkBluetoothEnabled(bluetoothAdapter)) {
-                Toast.makeText(applicationContext, "sssss", Toast.LENGTH_SHORT).show()
-            }
-        }
+        toggleServiceButtonAction(isScanServiceRunning)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -61,6 +50,41 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == ENABLE_BLUETOOTH_REQUEST_CODE) {
             if (resultCode == RESULT_CANCELED) {
                 showErrorDialog(getString(R.string.bluetooth_rationale_message), requestEnableBluetoothLambda)
+            }
+        }
+    }
+
+    private fun checkRequirements(): Boolean {
+        val bluetoothManager = getSystemService(BluetoothManager::class.java)
+        val bluetoothAdapter: BluetoothAdapter? = bluetoothManager?.adapter
+
+        checkLocationPermissions()
+        return checkBluetoothEnabled(bluetoothAdapter)
+    }
+
+    private fun toggleServiceButtonAction(isRunning: Boolean) {
+        if (isRunning) {
+            binding.toggleButton.text = getString(R.string.stop_service)
+            binding.toggleButton.setOnClickListener {
+                Intent(this, ScanService::class.java).also {
+                    it.action = getString(R.string.action_service_stop)
+                    this.startService(it)
+                }
+
+                toggleServiceButtonAction(!isRunning)
+            }
+
+        } else {
+            binding.toggleButton.text = getString(R.string.start_service)
+            binding.toggleButton.setOnClickListener {
+                if (checkRequirements()) {
+                    Intent(this, ScanService::class.java).also {
+                        it.action = getString(R.string.action_service_start)
+                        this.startService(it)
+                    }
+
+                    toggleServiceButtonAction(!isRunning)
+                }
             }
         }
     }

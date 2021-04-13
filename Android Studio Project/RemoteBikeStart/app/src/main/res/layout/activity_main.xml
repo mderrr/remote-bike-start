@@ -51,6 +51,6 @@
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/footerTextView"
-        app:srcCompat="@drawable/ic_copyleft_fill"
+        app:srcCompat="@drawable/ic_copyleft"
         android:contentDescription="@string/copyleft_image_view_description" />
 </androidx.constraintlayout.widget.ConstraintLayout>

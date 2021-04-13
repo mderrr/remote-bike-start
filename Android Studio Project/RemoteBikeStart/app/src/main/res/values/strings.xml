@@ -1,7 +1,22 @@
 <resources>
     <!-- Device Variables -->
     <string name="device_mac_address" translatable="false">88:25:83:F1:F9:71</string>
+    <string name="device_base_uuid" translatable="false">00000000-0000-1000-8000-00805F9B34FB</string>
+    <string name="device_service_uuid" translatable="false">FFE0</string>
+    <string name="device_characteristics_uuid" translatable="false">FFE1</string>
     <string name="device_password" translatable="false">882583</string>
+
+    <!-- Device Commands -->
+    <string name="command_ignition_start" translatable="false">A</string>
+    <string name="command_ignition_stop" translatable="false">a</string>
+    <string name="command_engine_start" translatable="false">B</string>
+    <string name="command_engine_stop" translatable="false">b</string>
+    <string name="command_placeholder" translatable="false">Z</string>
+
+    <!-- Command Variables -->
+    <string name="engine_start_delay" >3.3</string>
+    <string name="engine_start_duration" >0.5</string>
+
 
     <string name="app_name" translatable="false">Remote Bike Start</string>
 
@@ -30,7 +45,35 @@
     <string name="bluetooth_rationale_message">You must enable bluetooth to access the app\'s functionality.</string>
 
     <!-- Button text -->
-    <string name="ok">Ok</string>}
+    <string name="ok">OK</string>}
     <string name="cancel">Cancel</string>
     <string name="exit">Exit</string>
+    <string name="start_service">Start Service</string>
+    <string name="stop_service">Stop Service</string>
+
+    <!-- Scan Service -->
+    <string name="scan_service_description">The service tasked with scanning, finding and connecting to the Bluetooth Low Energy device.</string>
+
+    <!-- Scan Service Notification -->
+    <string name="notification_title_scan_service">Scanning Service Running</string>
+    <string name="notification_title_characteristics_uuid_error">Characteristic UUID Not Found</string>
+
+    <!-- Notification Channel Names -->
+    <string name="service_notification_channel_name">Bluetooth LE Scanning Service</string>
+
+    <!-- Notification Messages -->
+    <string name="notification_message_characteristics_uuid_error">Click here to modify them in settings</string>
+    <string name="notification_message_service_uuid_error">Error, UUID Not Found</string>
+    <string name="notification_message_service_scanning">Scanning for the device</string>
+    <string name="notification_message_service_scanning_stopped">Stopped Scanning for the device</string>
+    <string name="notification_message_service_device_found">Device Found, Trying to connect</string>
+    <string name="notification_message_service_device_connected">Device Connected</string>
+    <string name="notification_message_service_device_disconnected">Device Disconnected</string>
+
+    <!-- Service Variables -->
+    <string name="action_service_start" translatable="false">ACTION_SERVICE_START</string>
+    <string name="action_service_stop" translatable="false">ACTION_SERVICE_STOP</string>
+    <string name="service_notification_channel_id">ID_SERVICE_NOTIFICATION_CHANNEL</string>
+
+
 </resources>
