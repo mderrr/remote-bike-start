@@ -11,8 +11,8 @@ android {
         applicationId "com.example.remotebikestart"
         minSdkVersion 29
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,6 +21,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        applicationVariants.all {
+            variant ->
+                variant.outputs.each {
+                    output ->
+                        def name = "Remote Bike Start - ${variant.versionName}.apk"
+                        output.outputFileName = name
+                }
         }
     }
     compileOptions {
@@ -42,6 +51,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

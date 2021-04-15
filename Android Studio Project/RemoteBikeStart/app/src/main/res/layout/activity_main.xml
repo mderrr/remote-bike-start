@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_background"
-    tools:context=".MainActivity">
+    android:background="?attr/colorOnBackground"
+    tools:context=".MainActivity"
+    tools:ignore="Overdraw">
 
     <ImageView
         android:id="@+id/bannerImageView"
         android:layout_width="403dp"
         android:layout_height="147dp"
+        android:contentDescription="@string/banner_image_view_description"
+        android:src="@drawable/ic_rbs_banner_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_rbs_banner_grey"
-        android:contentDescription="@string/banner_image_view_description" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/toggleButton"
@@ -44,13 +45,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/copyleftImageView"
         android:layout_width="17dp"
         android:layout_height="17dp"
         android:layout_marginEnd="3dp"
         android:layout_marginBottom="24dp"
+        android:contentDescription="@string/copyleft_image_view_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/footerTextView"
-        app:srcCompat="@drawable/ic_copyleft"
-        android:contentDescription="@string/copyleft_image_view_description" />
+        app:srcCompat="@drawable/ic_copyleft" />
 </androidx.constraintlayout.widget.ConstraintLayout>

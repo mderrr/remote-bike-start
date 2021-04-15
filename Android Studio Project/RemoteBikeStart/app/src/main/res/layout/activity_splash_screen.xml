@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_background"
-    tools:context=".SplashScreenActivity">
+    tools:context=".SplashScreenActivity" >
 
     <ImageView
-        android:id="@+id/image_view_splash_logo"
+        android:id="@+id/imageViewSplashLogo"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:src="@drawable/ic_rbs_logo"

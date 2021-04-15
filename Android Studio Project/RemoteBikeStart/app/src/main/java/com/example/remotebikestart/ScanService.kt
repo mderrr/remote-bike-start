@@ -15,13 +15,13 @@ import androidx.core.app.NotificationCompat
 import java.lang.NumberFormatException
 import java.lang.StringBuilder
 import java.util.*
+import kotlinx.coroutines.*
 
 const val SERVICE_NOTIFICATION_ID = 2
 
 class ScanService : Service() {
     private val handler = Handler(Looper.getMainLooper())
     private var bluetoothGatt: BluetoothGatt? = null
-
 
     companion object {
         var isServiceRunning = false
@@ -89,12 +89,10 @@ class ScanService : Service() {
 
                 BluetoothProfile.STATE_DISCONNECTED -> {
                     isConnected = false
-                    //bluetoothGatt?.close()
 
                     if (isServiceRunning) {
                         stopForegroundService()
                         startForegroundService()
-                        // TODO send Notification
                     }
                 }
             }
@@ -145,7 +143,22 @@ class ScanService : Service() {
 
         handler.postDelayed({
             sendCommandToBluetoothDevice(characteristic, bluetoothGatt, engineStopCommand)
+            motorcycleLoopStart(characteristic, bluetoothGatt)
         }, getTime(getString(R.string.engine_start_duration)))
+    }
+
+    // Loop to hopefully avoid ble disconnecting
+    private fun motorcycleLoopStart(characteristic: BluetoothGattCharacteristic, bluetoothGatt: BluetoothGatt?) {
+        val placeholderCommand = getString(R.string.device_password) + getString(R.string.command_placeholder)
+
+        val job = GlobalScope.launch(Dispatchers.Default) {
+            while (isConnected) {
+                delay(60000)
+                sendCommandToBluetoothDevice(characteristic, bluetoothGatt, placeholderCommand)
+            }
+
+            this.cancel()
+        }
     }
 
     fun getBluetoothGattCharacteristic(bluetoothGatt: BluetoothGatt?, serviceUuid: String, characteristicUuid: String): BluetoothGattCharacteristic? {
@@ -207,6 +220,12 @@ class ScanService : Service() {
         startForeground(SERVICE_NOTIFICATION_ID, notificationBuilder.build())
     }
 
+    private fun cleanGatt() {
+        bluetoothGatt?.disconnect()
+        bluetoothGatt?.close()
+        bluetoothGatt = null
+    }
+
     private fun startForegroundService() {
         createServiceNotification(getString(R.string.notification_message_service_scanning))
         scanForLeDevices()
@@ -216,10 +235,7 @@ class ScanService : Service() {
     private fun stopForegroundService() {
         stopScanForLeDevices()
         stopForeground(true)
-        //stopSelf()
-        bluetoothGatt?.disconnect()
-        bluetoothGatt?.close()
-        bluetoothGatt = null
+        cleanGatt()
         isServiceRunning = false
     }
 }

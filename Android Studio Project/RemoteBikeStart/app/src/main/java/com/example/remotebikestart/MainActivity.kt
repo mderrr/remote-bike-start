@@ -28,18 +28,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val isScanServiceRunning = ScanService.isServiceRunning
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val currentYear = " ${Calendar.getInstance().get(Calendar.YEAR)} "
-        val copyrightFooter = getString(R.string.copyright_footer_beginning) + currentYear + getString(R.string.copyright_footer_end)
-        val isScanServiceRunning = ScanService.isServiceRunning
-
-        val bluetoothManager = getSystemService(BluetoothManager::class.java)
-        val bluetoothAdapter: BluetoothAdapter? = bluetoothManager?.adapter
-
         binding.toggleButton.tooltipText = getString(R.string.toggle_button_tooltip_message)
-        binding.footerTextView.text = copyrightFooter
+        binding.footerTextView.text = getCopyrightFooter()
 
         toggleServiceButtonAction(isScanServiceRunning)
     }
@@ -48,10 +43,22 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == ENABLE_BLUETOOTH_REQUEST_CODE) {
-            if (resultCode == RESULT_CANCELED) {
-                showErrorDialog(getString(R.string.bluetooth_rationale_message), requestEnableBluetoothLambda)
+            when (resultCode) {
+                RESULT_CANCELED -> { showErrorDialog(getString(R.string.bluetooth_rationale_message), requestEnableBluetoothLambda) }
+                RESULT_OK -> { Toast.makeText(applicationContext, getString(R.string.toast_press_start_again), Toast.LENGTH_LONG).show() }
             }
+
         }
+    }
+
+    override fun onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+        } else {
+            Toast.makeText(applicationContext, getString(R.string.back_to_exit_message), Toast.LENGTH_SHORT).show()
+        }
+
+        backPressedTime = System.currentTimeMillis()
     }
 
     private fun checkRequirements(): Boolean {
@@ -166,6 +173,7 @@ class MainActivity : AppCompatActivity() {
             return if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                 showRationaleDialog(permissions[0], rationaleMessage, requestCode)
                 false
+
             } else {
                 true
             }
@@ -181,13 +189,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        if (backPressedTime + 2000 > System.currentTimeMillis()) {
-            super.onBackPressed()
-        } else {
-            Toast.makeText(applicationContext, getString(R.string.back_to_exit_message), Toast.LENGTH_SHORT).show()
-        }
-
-        backPressedTime = System.currentTimeMillis()
+    private fun getCopyrightFooter(): String {
+        val currentYear = " ${Calendar.getInstance().get(Calendar.YEAR)} "
+        return getString(R.string.copyright_footer_beginning) + currentYear + getString(R.string.copyright_footer_end)
     }
 }

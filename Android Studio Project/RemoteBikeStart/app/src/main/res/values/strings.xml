@@ -1,4 +1,6 @@
 <resources>
+    <string name="app_name" translatable="false">Remote Bike Start</string>
+
     <!-- Device Variables -->
     <string name="device_mac_address" translatable="false">88:25:83:F1:F9:71</string>
     <string name="device_base_uuid" translatable="false">00000000-0000-1000-8000-00805F9B34FB</string>
@@ -8,26 +10,22 @@
 
     <!-- Device Commands -->
     <string name="command_ignition_start" translatable="false">A</string>
-    <string name="command_ignition_stop" translatable="false">a</string>
     <string name="command_engine_start" translatable="false">B</string>
     <string name="command_engine_stop" translatable="false">b</string>
     <string name="command_placeholder" translatable="false">Z</string>
 
     <!-- Command Variables -->
-    <string name="engine_start_delay" >3.3</string>
-    <string name="engine_start_duration" >0.5</string>
-
-
-    <string name="app_name" translatable="false">Remote Bike Start</string>
+    <string name="engine_start_delay" translatable="false">3.3</string>
+    <string name="engine_start_duration" translatable="false">0.5</string>
 
     <!-- Copyright Footer -->
     <string name="copyright_footer_beginning" translatable="false">Copyleft</string>
     <string name="copyright_footer_end" translatable="false">SHERZA</string>
 
     <!-- ImageView Descriptions -->
-    <string name="splash_screen_image_view_description">Splash screen image</string>
-    <string name="banner_image_view_description">Banner image</string>
-    <string name="copyleft_image_view_description">Copyleft image</string>
+    <string name="splash_screen_image_view_description" translatable="false">Splash screen image</string>
+    <string name="banner_image_view_description" translatable="false">Banner image</string>
+    <string name="copyleft_image_view_description" translatable="false">Copyleft image</string>
 
     <!-- Tooltip Messages -->
     <string name="toggle_button_tooltip_message">Toggle the Service</string>
@@ -42,7 +40,7 @@
     <!-- Permission Rationale Messages -->
     <string name="fine_location_rationale_message">Users must grant location permissions to establish a connection with a Bluetooth LE device, due to scanning having the potential of locating the user</string>
     <string name="background_location_rationale_message">It is highly recommended that the user grant background location permission, in order to avoid errors with the application\'s background functionality.</string>
-    <string name="bluetooth_rationale_message">You must enable bluetooth to access the app\'s functionality.</string>
+    <string name="bluetooth_rationale_message">You must enable bluetooth to access the app\'s functionality</string>
 
     <!-- Button text -->
     <string name="ok">OK</string>}
@@ -56,24 +54,22 @@
 
     <!-- Scan Service Notification -->
     <string name="notification_title_scan_service">Scanning Service Running</string>
-    <string name="notification_title_characteristics_uuid_error">Characteristic UUID Not Found</string>
 
     <!-- Notification Channel Names -->
     <string name="service_notification_channel_name">Bluetooth LE Scanning Service</string>
 
     <!-- Notification Messages -->
-    <string name="notification_message_characteristics_uuid_error">Click here to modify them in settings</string>
     <string name="notification_message_service_uuid_error">Error, UUID Not Found</string>
     <string name="notification_message_service_scanning">Scanning for the device</string>
     <string name="notification_message_service_scanning_stopped">Stopped Scanning for the device</string>
     <string name="notification_message_service_device_found">Device Found, Trying to connect</string>
     <string name="notification_message_service_device_connected">Device Connected</string>
-    <string name="notification_message_service_device_disconnected">Device Disconnected</string>
 
     <!-- Service Variables -->
     <string name="action_service_start" translatable="false">ACTION_SERVICE_START</string>
     <string name="action_service_stop" translatable="false">ACTION_SERVICE_STOP</string>
-    <string name="service_notification_channel_id">ID_SERVICE_NOTIFICATION_CHANNEL</string>
+    <string name="service_notification_channel_id" translatable="false">ID_SERVICE_NOTIFICATION_CHANNEL</string>
 
-
+    <!-- Toast Messages -->
+    <string name="toast_press_start_again">Press Again To Start</string>
 </resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tooltip Messages -->
+    <string name="toggle_button_tooltip_message">Iniciar / Detener el Servicio</string>
+
+    <!-- Help Messages -->
+    <string name="back_to_exit_message">Presiona volver de nuevo para salir</string>
+
+    <!-- Dialog Titles -->
+    <string name="permission_rationale_dialog_title">Permiso Requerido</string>
+    <string name="error_dialog_title">Error</string>
+
+    <!-- Permission Rationale Messages -->
+    <string name="fine_location_rationale_message">El permiso de localización es nesesario para el funcionamiento de Bluetooh LE, ya que este puede ser usado para localizar el usuario en el espacio</string>
+    <string name="background_location_rationale_message">Es muy recomendado permitir el uso de la localización en segundo plano, para garantizar el buen funcionamiento del servicio</string>
+    <string name="bluetooth_rationale_message">Debes activar el Bluetooth para continuar</string>
+
+    <!-- Button text -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="exit">Salir</string>
+    <string name="start_service">Iniciar Servicio</string>
+    <string name="stop_service">Detener Servicio</string>
+
+    <!-- Scan Service -->
+    <string name="scan_service_description">"El servicio a cargo de scanear y conectarse con el dispositivo BLE. "</string>
+
+    <!-- Scan Service Notification -->
+    <string name="notification_title_scan_service">Servicio de Escaneo Activo</string>
+
+    <!-- Notification Channel Names -->
+    <string name="service_notification_channel_name">Servicio de escaneo Bluetooth LE</string>
+
+    <!-- Notification Messages -->
+    <string name="notification_message_service_uuid_error">Error, UUID no encontrada</string>
+    <string name="notification_message_service_scanning">Buscando dispositivo</string>
+    <string name="notification_message_service_scanning_stopped">Escaneo detenido</string>
+    <string name="notification_message_service_device_found">Dispositivo encontrado, intentando conectar</string>
+    <string name="notification_message_service_device_connected">Dispositivo Conectado</string>
+
+    <!-- Toast Messages -->
+    <string name="toast_press_start_again">Presiona de Nuevo Para Iniciar</string>
+</resources>
